@@ -14,4 +14,11 @@ public class Facade {
         return usuarioService.getAtributoUsuario(id, nome);
     }
 
+    public void criarUsuario(String nome, String email, String senha, String endereco) {
+        usuarioService.criarUsuario(nome, email, senha, endereco);
+    }
+
+    public void criarUsuario(String nome, String email, String senha, String endereco, String cpf) {
+        usuarioService.criarUsuario(nome, email, senha, endereco, cpf);
+    }
 }

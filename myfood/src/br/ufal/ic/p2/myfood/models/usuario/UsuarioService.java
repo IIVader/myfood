@@ -9,7 +9,7 @@ public class UsuarioService {
 
     private int contadorId = 1;
 
-    Map<String, Usuario> usuariosPorId = new HashMap<>();
+    Map<Integer, Usuario> usuariosPorId = new HashMap<>();
 
     //Ajeitar essa função, ela deve retornar qualquer atributo requerido do user (usar um switch case)
     public String getAtributoUsuario (int id, String nome) throws UsuarioNaoCadastradoException {
@@ -20,5 +20,15 @@ public class UsuarioService {
         }
     }
 
+    public void criarUsuario(String nome, String email, String senha, String endereco) {
+        UsuarioCliente cliente = new UsuarioCliente(this.contadorId, nome, email, senha, endereco);
+        usuariosPorId.put(contadorId, cliente);
+        this.contadorId += 1;
+    }
 
+    public void criarUsuario(String nome, String email, String senha, String endereco, String cpf) {
+        UsuarioRestaurante restaurante = new UsuarioRestaurante(this.contadorId, nome, email, senha, endereco, cpf);
+        usuariosPorId.put(contadorId, restaurante);
+        this.contadorId += 1;
+    }
 }
