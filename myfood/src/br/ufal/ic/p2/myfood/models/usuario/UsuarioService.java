@@ -1,7 +1,6 @@
 package br.ufal.ic.p2.myfood.models.usuario;
 
-import br.ufal.ic.p2.myfood.exceptions.EmailJaCadastradoException;
-import br.ufal.ic.p2.myfood.exceptions.UsuarioNaoCadastradoException;
+import br.ufal.ic.p2.myfood.exceptions.*;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -9,6 +8,7 @@ import java.util.Map;
 public class UsuarioService {
 
     private int contadorId = 1;
+    private ValidadorDeCampos validador = new ValidadorDeCampos();
 
     Map<Integer, Usuario> usuariosPorId = new HashMap<>();
     
@@ -31,20 +31,25 @@ public class UsuarioService {
         }
     }
 
-    public void criarUsuario(String nome, String email, String senha, String endereco) throws EmailJaCadastradoException {
+    public void criarUsuario(String nome, String email, String senha, String endereco) throws EmailJaCadastradoException, NomeInvalidoException, EmailInvalidoException, EnderecoInvalidoException, SenhaInvalidaException {
+        validador.validarDados(nome, email, senha, endereco);
+
         for(Usuario usuario : usuariosPorId.values()) {
             if (usuario.getEmail().equals(email)) {
                 throw new EmailJaCadastradoException();
             }
         }
 
-            UsuarioCliente cliente = new UsuarioCliente(this.contadorId, nome, email, senha, endereco);
-            usuariosPorId.put(contadorId, cliente);
-            this.contadorId += 1;
+        UsuarioCliente cliente = new UsuarioCliente(this.contadorId, nome, email, senha, endereco);
+        usuariosPorId.put(contadorId, cliente);
+        this.contadorId += 1;
     }
 
-    public void criarUsuario(String nome, String email, String senha, String endereco, String cpf) throws EmailJaCadastradoException {
-            for(Usuario usuario : usuariosPorId.values()) {
+    public void criarUsuario(String nome, String email, String senha, String endereco, String cpf) throws EmailJaCadastradoException, NomeInvalidoException, EmailInvalidoException, EnderecoInvalidoException, SenhaInvalidaException, CpfInvalidoException {
+        validador.validarDados(nome, email, senha, endereco);
+        validador.validarCpf(cpf);
+
+        for(Usuario usuario : usuariosPorId.values()) {
                 if (usuario.getEmail().equals(email)) {
                     throw new EmailJaCadastradoException();
                 }
