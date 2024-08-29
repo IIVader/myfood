@@ -22,7 +22,7 @@ public class Facade {
         usuarioService.criarUsuario(nome, email, senha, endereco, cpf);
     }
 
-    public int login(String email, String senha) throws EmailInvalidoException, SenhaInvalidaException, LoginInvalidoException {
+    public int login(String email, String senha) throws LoginInvalidoException {
         return usuarioService.login(email, senha);
     }
 }

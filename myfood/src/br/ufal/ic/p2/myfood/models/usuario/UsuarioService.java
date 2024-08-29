@@ -60,7 +60,7 @@ public class UsuarioService {
         this.contadorId += 1;
     }
 
-    public int login(String email, String senha) throws LoginInvalidoException, EmailInvalidoException, SenhaInvalidaException {
+    public int login(String email, String senha) throws LoginInvalidoException {
         validador.validarLogin(email, senha);
 
         for(Usuario usuario : usuariosPorId.values()) {

@@ -23,9 +23,9 @@ public class ValidadorDeCampos {
         } else if(cpf == null || cpf.trim().isEmpty()) throw new CpfInvalidoException();
     }
 
-    public void validarLogin(String email, String senha) throws EmailInvalidoException, SenhaInvalidaException {
-        if(email == null || email.trim().isEmpty() || !validarEmail(email)) throw new EmailInvalidoException();
-        if(senha == null || senha.trim().isEmpty()) throw new SenhaInvalidaException();
+    public void validarLogin(String email, String senha) throws LoginInvalidoException {
+        if(email == null || email.trim().isEmpty() || !validarEmail(email)) throw new LoginInvalidoException();
+        if(senha == null || senha.trim().isEmpty()) throw new LoginInvalidoException();
     }
 
     private boolean validarEmail(String email) {
