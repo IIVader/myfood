@@ -21,4 +21,8 @@ public class Facade {
     public void criarUsuario(String nome, String email, String senha, String endereco, String cpf) throws EmailJaCadastradoException, NomeInvalidoException, EmailInvalidoException, EnderecoInvalidoException, SenhaInvalidaException, CpfInvalidoException {
         usuarioService.criarUsuario(nome, email, senha, endereco, cpf);
     }
+
+    public int login(String email, String senha) throws EmailInvalidoException, SenhaInvalidaException, LoginInvalidoException {
+        return usuarioService.login(email, senha);
+    }
 }

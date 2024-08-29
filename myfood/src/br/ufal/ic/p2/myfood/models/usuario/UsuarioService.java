@@ -59,4 +59,15 @@ public class UsuarioService {
         usuariosPorId.put(contadorId, restaurante);
         this.contadorId += 1;
     }
+
+    public int login(String email, String senha) throws LoginInvalidoException, EmailInvalidoException, SenhaInvalidaException {
+        validador.validarLogin(email, senha);
+
+        for(Usuario usuario : usuariosPorId.values()) {
+            if (usuario.getEmail().equals(email) && usuario.getSenha().equals(senha)) {
+                return usuario.getId();
+            }
+        }
+        throw new LoginInvalidoException();
+    }
 }
