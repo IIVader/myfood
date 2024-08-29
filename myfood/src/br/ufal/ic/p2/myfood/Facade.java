@@ -11,8 +11,8 @@ public class Facade {
 
     public void zerarSistema (){}
 
-    public String getAtributoUsuario(int id, String nome) throws UsuarioNaoCadastradoException {
-        return usuarioService.getAtributoUsuario(id, nome);
+    public String getAtributoUsuario(int id, String atributo) throws UsuarioNaoCadastradoException {
+        return usuarioService.getAtributoUsuario(id, atributo);
     }
 
     public void criarUsuario(String nome, String email, String senha, String endereco) throws EmailJaCadastradoException {

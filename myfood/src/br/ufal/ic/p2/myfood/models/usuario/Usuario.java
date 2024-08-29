@@ -28,4 +28,8 @@ public class Usuario {
     public String getSenha() {
         return senha;
     }
+
+    public String getEndereco() {
+        return null;
+    }
 }

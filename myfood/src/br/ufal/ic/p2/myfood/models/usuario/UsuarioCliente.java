@@ -8,4 +8,9 @@ public class UsuarioCliente extends Usuario {
         super(id, nome, email, senha);
         this.endereco = endereco;
     }
+
+    @Override
+    public String getEndereco() {
+        return endereco;
+    }
 }

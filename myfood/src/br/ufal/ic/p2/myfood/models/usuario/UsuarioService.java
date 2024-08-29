@@ -11,13 +11,23 @@ public class UsuarioService {
     private int contadorId = 1;
 
     Map<Integer, Usuario> usuariosPorId = new HashMap<>();
+    
+    public String getAtributoUsuario (int id, String atributo) throws UsuarioNaoCadastradoException {
+        Usuario usuario = usuariosPorId.get(id);
 
-    //Ajeitar essa função, ela deve retornar qualquer atributo requerido do user (usar um switch case)
-    public String getAtributoUsuario (int id, String nome) throws UsuarioNaoCadastradoException {
-        if(!usuariosPorId.containsValue(id)) {
+        if(usuario == null) {
             throw new UsuarioNaoCadastradoException();
         } else {
-            return nome;
+            switch (atributo.toLowerCase()) {
+                case "nome":
+                    return usuario.getNome();
+                case "email":
+                    return usuario.getEmail();
+                case "endereco":
+                    return usuario.getEndereco();
+                default:
+                    throw new IllegalArgumentException("Atributo desconhecido: " + atributo);
+            }
         }
     }
 
