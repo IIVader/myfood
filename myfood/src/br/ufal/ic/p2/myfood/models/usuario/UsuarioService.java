@@ -11,7 +11,7 @@ public class UsuarioService {
     private ValidadorDeCampos validador = new ValidadorDeCampos();
 
     Map<Integer, Usuario> usuariosPorId = new HashMap<>();
-    
+
     public String getAtributoUsuario (int id, String atributo) throws UsuarioNaoCadastradoException {
         Usuario usuario = usuariosPorId.get(id);
 
@@ -50,13 +50,13 @@ public class UsuarioService {
         validador.validarCpf(cpf);
 
         for(Usuario usuario : usuariosPorId.values()) {
-                if (usuario.getEmail().equals(email)) {
-                    throw new EmailJaCadastradoException();
-                }
+            if (usuario.getEmail().equals(email)) {
+                throw new EmailJaCadastradoException();
             }
+        }
 
-            UsuarioRestaurante restaurante = new UsuarioRestaurante(this.contadorId, nome, email, senha, endereco, cpf);
-            usuariosPorId.put(contadorId, restaurante);
-            this.contadorId += 1;
+        UsuarioRestaurante restaurante = new UsuarioRestaurante(this.contadorId, nome, email, senha, endereco, cpf);
+        usuariosPorId.put(contadorId, restaurante);
+        this.contadorId += 1;
     }
 }
