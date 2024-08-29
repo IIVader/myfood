@@ -32,4 +32,7 @@ public class Usuario {
     public String getEndereco() {
         return null;
     }
+    public String getCpf(){
+        return null;
+    }
 }

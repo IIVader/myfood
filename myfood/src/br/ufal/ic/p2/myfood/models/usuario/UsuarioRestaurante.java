@@ -10,4 +10,9 @@ public class UsuarioRestaurante extends Usuario {
         this.endereco = endereco;
         this.cpf = cpf;
     }
+
+    @Override
+    public String getCpf() {
+        return cpf;
+    }
 }

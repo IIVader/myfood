@@ -25,6 +25,8 @@ public class UsuarioService {
                     return usuario.getEmail();
                 case "endereco":
                     return usuario.getEndereco();
+                case "cpf":
+                    return usuario.getCpf();
                 default:
                     throw new IllegalArgumentException("Atributo desconhecido: " + atributo);
             }
