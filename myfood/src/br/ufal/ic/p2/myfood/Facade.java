@@ -25,4 +25,6 @@ public class Facade {
     public int login(String email, String senha) throws LoginInvalidoException {
         return usuarioService.login(email, senha);
     }
+
+    public void encerrarSistema(){}
 }
