@@ -1,12 +1,14 @@
 package br.ufal.ic.p2.myfood;
 
-import br.ufal.ic.p2.myfood.exceptions.*;
+import br.ufal.ic.p2.myfood.exceptions.empresa.EmpresaComEsseNomeExisteException;
+import br.ufal.ic.p2.myfood.exceptions.usuario.*;
+import br.ufal.ic.p2.myfood.models.empresa.EmpresaService;
 import br.ufal.ic.p2.myfood.models.usuario.UsuarioService;
-import easyaccept.EasyAccept;
 
 public class Facade {
 
     UsuarioService usuarioService = new UsuarioService();
+    EmpresaService empresaService = new EmpresaService();
 
     public void zerarSistema (){}
 
@@ -24,6 +26,10 @@ public class Facade {
 
     public int login(String email, String senha) throws LoginInvalidoException {
         return usuarioService.login(email, senha);
+    }
+
+    public int criarEmpresa(String tipoEmpresa, int idDono, String nome, String endereco, String tipoCozinha) throws EmpresaComEsseNomeExisteException {
+        return empresaService.criarEmpresa(tipoEmpresa, idDono, nome, endereco, tipoCozinha);
     }
 
     public void encerrarSistema(){}

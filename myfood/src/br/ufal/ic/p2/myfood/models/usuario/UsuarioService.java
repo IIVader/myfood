@@ -1,6 +1,6 @@
 package br.ufal.ic.p2.myfood.models.usuario;
 
-import br.ufal.ic.p2.myfood.exceptions.*;
+import br.ufal.ic.p2.myfood.exceptions.usuario.*;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -59,7 +59,7 @@ public class UsuarioService {
             }
         }
 
-        UsuarioRestaurante restaurante = new UsuarioRestaurante(this.contadorId, nome, email, senha, endereco, cpf);
+        UsuarioDonoEmpresa restaurante = new UsuarioDonoEmpresa(this.contadorId, nome, email, senha, endereco, cpf);
         usuariosPorId.put(contadorId, restaurante);
         this.contadorId += 1;
     }

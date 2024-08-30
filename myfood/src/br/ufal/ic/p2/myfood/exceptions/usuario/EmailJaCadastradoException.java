@@ -1,4 +1,4 @@
-package br.ufal.ic.p2.myfood.exceptions;
+package br.ufal.ic.p2.myfood.exceptions.usuario;
 
 public class EmailJaCadastradoException extends Exception{
     public EmailJaCadastradoException(){

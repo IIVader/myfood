@@ -1,6 +1,6 @@
 package br.ufal.ic.p2.myfood.models.usuario;
 
-import br.ufal.ic.p2.myfood.exceptions.*;
+import br.ufal.ic.p2.myfood.exceptions.usuario.*;
 
 import java.util.regex.Pattern;
 import java.util.regex.Matcher;
