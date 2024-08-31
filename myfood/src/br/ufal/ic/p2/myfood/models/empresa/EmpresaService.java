@@ -31,6 +31,25 @@ public class EmpresaService {
         return contadorIdEmpresa;
     }
 
+    public String getEmpresasDoUsuario (int idDono) {
+        StringBuilder nomeDasEmpresas = new StringBuilder();
+        nomeDasEmpresas.append("{[");
+
+        for(Empresa empresa : empresasPorId.values()) {
+            if(empresa.getIdDono() == idDono){
+                nomeDasEmpresas.append("[").append(empresa.getNome()).append(",").append(" ").append(empresa.getEndereco()).append("]").append(",").append(" ");
+            }
+        }
+
+        if (nomeDasEmpresas.length() > 2) { // > 2 para garantir que haja os "]}" do final
+            nomeDasEmpresas.setLength(nomeDasEmpresas.length() - 2);
+        }
+
+        nomeDasEmpresas.append("]}");
+
+        return nomeDasEmpresas.toString();
+    }
+
     public void apagarDados() {
         empresasPorId.clear();
     }

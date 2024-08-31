@@ -37,5 +37,9 @@ public class Facade {
         return empresaService.criarEmpresa(tipoEmpresa, idDono, nome, endereco, tipoCozinha);
     }
 
+    public String getEmpresasDoUsuario(int idDono) {
+        return empresaService.getEmpresasDoUsuario(idDono);
+    }
+
     public void encerrarSistema(){}
 }
