@@ -1,6 +1,6 @@
 package br.ufal.ic.p2.myfood.models.usuario;
 
-public class Usuario {
+public class Usuario implements Enderecavel, Identificavel{
     private int id;
     private String nome;
     private String email;
@@ -29,10 +29,13 @@ public class Usuario {
         return senha;
     }
 
+    @Override
     public String getEndereco() {
-        return null;
+        return "";
     }
-    public String getCpf(){
-        return null;
+
+    @Override
+    public String getCpf() {
+        return "";
     }
 }

@@ -1,6 +1,6 @@
 package br.ufal.ic.p2.myfood.models.usuario;
 
-public class UsuarioDonoEmpresa extends Usuario {
+public class UsuarioDonoEmpresa extends Usuario implements Enderecavel, Identificavel {
 
     private String endereco;
     private String cpf;

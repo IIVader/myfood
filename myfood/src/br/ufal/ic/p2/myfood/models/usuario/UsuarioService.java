@@ -10,7 +10,7 @@ public class UsuarioService {
     private int contadorId = 1;
     private ValidadorDeCampos validador = new ValidadorDeCampos();
 
-    Map<Integer, Usuario> usuariosPorId = new HashMap<>();
+    private Map<Integer, Usuario> usuariosPorId = new HashMap<>();
 
     public String getAtributoUsuario (int id, String atributo) throws UsuarioNaoCadastradoException {
         Usuario usuario = usuariosPorId.get(id);
@@ -49,7 +49,7 @@ public class UsuarioService {
         this.contadorId += 1;
     }
 
-    public void criarUsuario(String nome, String email, String senha, String endereco, String cpf) throws EmailJaCadastradoException, NomeInvalidoException, EmailInvalidoException, EnderecoInvalidoException, SenhaInvalidaException, CpfInvalidoException {
+    public void criarUsuario(String nome, String email, String senha, String endereco, String cpf) throws EmailJaCadastradoException, NomeInvalidoException, EmailInvalidoException, EnderecoInvalidoException, SenhaInvalidaException, CpfInvalidoException, CpfJaCadastradoException {
         validador.validarDados(nome, email, senha, endereco);
         validador.validarCpf(cpf);
 
@@ -57,6 +57,9 @@ public class UsuarioService {
             if (usuario.getEmail().equals(email)) {
                 throw new EmailJaCadastradoException();
             }
+//            if(usuario.getCpf().equals(cpf)){
+//                throw new CpfJaCadastradoException();
+//            }
         }
 
         UsuarioDonoEmpresa restaurante = new UsuarioDonoEmpresa(this.contadorId, nome, email, senha, endereco, cpf);
@@ -73,5 +76,9 @@ public class UsuarioService {
             }
         }
         throw new LoginInvalidoException();
+    }
+
+    public void apagarDados() {
+        usuariosPorId.clear();
     }
 }
