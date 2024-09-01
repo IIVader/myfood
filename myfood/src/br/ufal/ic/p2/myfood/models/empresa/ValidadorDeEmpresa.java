@@ -5,6 +5,7 @@ import br.ufal.ic.p2.myfood.exceptions.empresa.EmpresaComMesmoNomeELocalExceptio
 import br.ufal.ic.p2.myfood.exceptions.empresa.UsuarioNormalNaoAbreEmpresaException;
 import br.ufal.ic.p2.myfood.exceptions.usuario.UsuarioNaoCadastradoException;
 import br.ufal.ic.p2.myfood.models.usuario.Usuario;
+import br.ufal.ic.p2.myfood.models.usuario.UsuarioDonoEmpresa;
 import br.ufal.ic.p2.myfood.models.usuario.UsuarioService;
 
 import java.util.Map;
@@ -25,7 +26,7 @@ public class ValidadorDeEmpresa {
         }
     }
 
-    public void validarSeEhUsuarioComum(int idDono) throws UsuarioNormalNaoAbreEmpresaException {
+    public void validarSeEhUsuarioComum(int idDono) throws UsuarioNormalNaoAbreEmpresaException, UsuarioNaoCadastradoException {
     }
 
 }

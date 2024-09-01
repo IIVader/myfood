@@ -1,8 +1,6 @@
 package br.ufal.ic.p2.myfood;
 
-import br.ufal.ic.p2.myfood.exceptions.empresa.EmpresaComEsseNomeExisteException;
-import br.ufal.ic.p2.myfood.exceptions.empresa.EmpresaComMesmoNomeELocalException;
-import br.ufal.ic.p2.myfood.exceptions.empresa.UsuarioNormalNaoAbreEmpresaException;
+import br.ufal.ic.p2.myfood.exceptions.empresa.*;
 import br.ufal.ic.p2.myfood.exceptions.usuario.*;
 import br.ufal.ic.p2.myfood.models.empresa.EmpresaService;
 import br.ufal.ic.p2.myfood.models.usuario.UsuarioService;
@@ -39,6 +37,10 @@ public class Facade {
 
     public String getEmpresasDoUsuario(int idDono) {
         return empresaService.getEmpresasDoUsuario(idDono);
+    }
+
+    public String getAtributoEmpresa(int idEmpresa, String atributo) throws AtributoInvalidoException, EmpresaNaoCadastradaException {
+        return empresaService.getAtributoEmpresa(idEmpresa, atributo);
     }
 
     public void encerrarSistema(){}

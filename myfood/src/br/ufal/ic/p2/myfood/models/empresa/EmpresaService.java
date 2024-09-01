@@ -1,8 +1,6 @@
 package br.ufal.ic.p2.myfood.models.empresa;
 
-import br.ufal.ic.p2.myfood.exceptions.empresa.EmpresaComEsseNomeExisteException;
-import br.ufal.ic.p2.myfood.exceptions.empresa.EmpresaComMesmoNomeELocalException;
-import br.ufal.ic.p2.myfood.exceptions.empresa.UsuarioNormalNaoAbreEmpresaException;
+import br.ufal.ic.p2.myfood.exceptions.empresa.*;
 import br.ufal.ic.p2.myfood.exceptions.usuario.UsuarioNaoCadastradoException;
 import br.ufal.ic.p2.myfood.models.usuario.Usuario;
 
@@ -17,9 +15,10 @@ public class EmpresaService {
 
     private ValidadorDeEmpresa validador = new ValidadorDeEmpresa();
 
-    public int criarEmpresa(String tipoEmpresa, int idDono, String nome, String endereco, String tipoCozinha) throws EmpresaComEsseNomeExisteException, EmpresaComMesmoNomeELocalException, UsuarioNormalNaoAbreEmpresaException {
+    public int criarEmpresa(String tipoEmpresa, int idDono, String nome, String endereco, String tipoCozinha) throws EmpresaComEsseNomeExisteException, EmpresaComMesmoNomeELocalException, UsuarioNormalNaoAbreEmpresaException, UsuarioNaoCadastradoException {
         validador.validarSeEmpresaJaExiste(empresasPorId, nome, idDono);
         validador.validarEnderecoDaNovaEmpresa(empresasPorId, nome, idDono, endereco);
+        validador.validarSeEhUsuarioComum(idDono);
 
         if(tipoEmpresa.equals("restaurante")) {
             Empresa novoRestaurante = new EmpresaRestaurante(contadorIdEmpresa, nome, endereco, idDono, tipoCozinha);
@@ -48,6 +47,29 @@ public class EmpresaService {
         nomeDasEmpresas.append("]}");
 
         return nomeDasEmpresas.toString();
+    }
+
+    public String getAtributoEmpresa (int idEmpresa, String atributo) throws EmpresaNaoCadastradaException, AtributoInvalidoException {
+        Empresa empresa = empresasPorId.get(idEmpresa - 1);
+
+//        for(Empresa empresas : empresasPorId.values()) {
+//            System.out.println("[" + empresas.getNome() + ", " + empresas.getEndereco() + ", " + empresas.getId());
+//        }
+
+        if(empresa == null) {
+            throw new EmpresaNaoCadastradaException();
+        } else {
+            switch (atributo.toLowerCase()) {
+                case "nome":
+                    return empresa.getNome();
+                case "endereco":
+                    return empresa.getEndereco();
+                case "tipoCozinha":
+                    return empresa.getTipoCozinha();
+                default:
+                    throw new AtributoInvalidoException();
+            }
+        }
     }
 
     public void apagarDados() {
